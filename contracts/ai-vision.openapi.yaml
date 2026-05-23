@@ -5,6 +5,10 @@ info:
   description: |
     Contract mock tối thiểu cho consumer-side smoke test trong FIT4110 Lab 03.
     File này giúp Camera Stream hoặc Core Business gọi thử AI Vision khi service thật chưa hoàn thiện.
+  contact:
+    name: FIT4110 Lab 03 - Team 10
+    email: team10@fit.example.edu
+    url: https://github.com/FIT-17-09/fit4110-lab03-nhom-10-1
 servers:
   - url: http://localhost:4011
     description: Prism mock server for AI Vision

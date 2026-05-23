@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="FIT4110 Lab03 - IoT Ingestion Contract Tests" tests="13" time="0.156">
+  <testsuite name="00_Health / GET /health - service is alive" id="d7bb686e-51ef-4a66-9c62-306b3cd09188" timestamp="2026-05-23T03:06:59.725Z" tests="2" failures="0" errors="0" time="0.034">
+    <testcase name="Status code is 200" time="0.034" classname="00HealthGetHealthServiceIsAlive"/>
+    <testcase name="Response has service status" time="0.034" classname="00HealthGetHealthServiceIsAlive"/>
+  </testsuite>
+  <testsuite name="01_Functional / POST /readings - happy path creates reading" id="3e765f85-89aa-41a8-a2a3-fed64729dce1" timestamp="2026-05-23T03:06:59.725Z" tests="2" failures="0" errors="0" time="0.006">
+    <testcase name="Status code is 201" time="0.006" classname="01FunctionalPostReadingsHappyPathCreatesReading"/>
+    <testcase name="Response has created reading fields" time="0.006" classname="01FunctionalPostReadingsHappyPathCreatesReading"/>
+  </testsuite>
+  <testsuite name="01_Functional / GET /readings/latest - list latest readings" id="bb815cb6-6363-45a4-b37a-0c29be719739" timestamp="2026-05-23T03:06:59.725Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="Status code is 200" time="0.007" classname="01FunctionalGetReadingsLatestListLatestReadings"/>
+    <testcase name="Response contains items array" time="0.007" classname="01FunctionalGetReadingsLatestListLatestReadings"/>
+  </testsuite>
+  <testsuite name="02_Auth / GET /readings/latest - valid token is accepted" id="6312d2d7-157f-455a-942f-fe1c8711c267" timestamp="2026-05-23T03:06:59.725Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="Valid token request returns success" time="0.005" classname="02AuthGetReadingsLatestValidTokenIsAccepted"/>
+  </testsuite>
+  <testsuite name="02_Auth / POST /readings - missing token is rejected on real service" id="f04c1de7-c89d-46a3-91fa-fdf727f5d8b9" timestamp="2026-05-23T03:06:59.725Z" tests="1" failures="0" errors="0" time="0.007">
+    <testcase name="Skipped on mock: Prism does not enforce real auth without a service implementation" time="0.007" classname="02AuthPostReadingsMissingTokenIsRejectedOnRealService"/>
+  </testsuite>
+  <testsuite name="02_Auth / POST /readings - invalid token is rejected on real service" id="61102497-1270-4088-95f3-b0b17566cd7a" timestamp="2026-05-23T03:06:59.725Z" tests="1" failures="0" errors="0" time="0.006">
+    <testcase name="Skipped on mock: invalid token requires real auth middleware" time="0.006" classname="02AuthPostReadingsInvalidTokenIsRejectedOnRealService"/>
+  </testsuite>
+  <testsuite name="03_Negative / POST /readings - missing required field returns validation error" id="d9e5c154-9765-4108-a031-d81a2184d102" timestamp="2026-05-23T03:06:59.725Z" tests="2" failures="0" errors="0" time="0.006">
+    <testcase name="Invalid payload returns client error" time="0.006" classname="03NegativePostReadingsMissingRequiredFieldReturnsValidationError"/>
+    <testcase name="Error response follows ProblemDetails shape" time="0.006" classname="03NegativePostReadingsMissingRequiredFieldReturnsValidationError"/>
+  </testsuite>
+  <testsuite name="03_Negative / POST /readings - wrong enum value returns validation error" id="9bc6f27c-05a2-4b40-95be-511aad1d456d" timestamp="2026-05-23T03:06:59.725Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="Wrong metric enum returns client error" time="0.007" classname="03NegativePostReadingsWrongEnumValueReturnsValidationError"/>
+    <testcase name="Error response has detail" time="0.007" classname="03NegativePostReadingsWrongEnumValueReturnsValidationError"/>
+  </testsuite>
+  <testsuite name="04_Boundary_Reliability / POST /readings - boundary value 80 is accepted" id="a12c837c-31d8-4283-81b1-48c729a6b1eb" timestamp="2026-05-23T03:06:59.725Z" tests="2" failures="0" errors="0" time="0.006">
+    <testcase name="Boundary value at max returns success" time="0.006" classname="04BoundaryReliabilityPostReadingsBoundaryValue80IsAccepted"/>
+    <testcase name="Response confirms accepted reading" time="0.006" classname="04BoundaryReliabilityPostReadingsBoundaryValue80IsAccepted"/>
+  </testsuite>
+  <testsuite name="04_Boundary_Reliability / POST /readings - value 81 is rejected as out of range" id="09b99227-d231-4dc8-bd8f-bf2991395823" timestamp="2026-05-23T03:06:59.725Z" tests="2" failures="0" errors="0" time="0.005">
+    <testcase name="Out-of-range value returns client error" time="0.005" classname="04BoundaryReliabilityPostReadingsValue81IsRejectedAsOutOfRange"/>
+    <testcase name="Boundary test checks response, not request body" time="0.005" classname="04BoundaryReliabilityPostReadingsValue81IsRejectedAsOutOfRange"/>
+  </testsuite>
+  <testsuite name="04_Boundary_Reliability / GET /readings/latest - limit above max is rejected" id="db50c820-3325-47ce-a5c9-6d400b193b16" timestamp="2026-05-23T03:06:59.725Z" tests="1" failures="0" errors="0" time="0.009">
+    <testcase name="Limit above max returns client error" time="0.009" classname="04BoundaryReliabilityGetReadingsLatestLimitAboveMaxIsRejected"/>
+  </testsuite>
+  <testsuite name="05_Consumer_side_Smoke / Consumer smoke - Camera/Core can call AI Vision mock" id="8144356c-eaf2-44f5-bbf9-acbe73cf255e" timestamp="2026-05-23T03:06:59.725Z" tests="2" failures="0" errors="0" time="0.054">
+    <testcase name="Consumer receives success from provider mock" time="0.054" classname="05ConsumerSideSmokeConsumerSmokeCameraCoreCanCallAiVisionMock"/>
+    <testcase name="Consumer can read detection fields" time="0.054" classname="05ConsumerSideSmokeConsumerSmokeCameraCoreCanCallAiVisionMock"/>
+  </testsuite>
+  <testsuite name="06_Local_only_NonFunctional / POST /readings - local response time threshold" id="9cd2bd47-31d7-450f-b28e-e9cf7e7c9b51" timestamp="2026-05-23T03:06:59.725Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="Skipped on mock: mock latency is not evidence of real service reliability" time="0.004" classname="06LocalOnlyNonFunctionalPostReadingsLocalResponseTimeThreshold"/>
+  </testsuite>
+</testsuites>
