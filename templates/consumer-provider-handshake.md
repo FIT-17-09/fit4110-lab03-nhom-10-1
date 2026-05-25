@@ -8,6 +8,10 @@
 - Consumer team:
 - Provider service:
 - Consumer service:
+- Provider team: team-iot
+- Consumer team: 
+- Provider service: IoT Ingestion
+- Consumer service: (fill by consumer)
 
 ## Contract
 
@@ -15,6 +19,10 @@
 - Mock base URL:
 - Auth method:
 - Endpoint được test:
+- Contract file: contracts/iot-ingestion.openapi.yaml
+- Mock base URL: http://localhost:4010
+- Auth method: Bearer token in `Authorization` header
+- Endpoint được test: POST /readings, GET /readings/latest
 
 ## Smoke test
 
@@ -55,3 +63,5 @@ Content-Type: application/json
 
 - Provider representative:
 - Consumer representative:
+- Provider representative: (name/email)
+- Consumer representative: (name/email)
